@@ -10,8 +10,8 @@
     <tbody>
         @foreach ($to_dos as $to_do)
             <tr>
-                <td>{{ $to_do->name  }}</td>
-                <td><a href="{{ route('to-dos.show', $to_do->id) }}">Open</a></td>
+                <td>{{ $to_do['name']  }}</td>
+                <td><a href="{{ route('to-dos.show', $to_do['id']) }}">Open</a></td>
             </tr>
         @endforeach
     </tbody>
