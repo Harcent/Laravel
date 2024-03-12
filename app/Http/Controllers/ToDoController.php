@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUpdateToDo;
 use App\Models\ToDo;
 use Illuminate\Http\Request;
-
 class ToDoController extends Controller
 {
     public function index(ToDo $to_do)
@@ -19,9 +19,9 @@ class ToDoController extends Controller
         return view('to-dos/create');
     }
 
-    public function store(Request $request, ToDo $to_do)
+    public function store(StoreUpdateToDo $request, ToDo $to_do)
     {
-        $data = $request->all();
+        $data = $request->validated();
         $to_do->create($data);
         
         return redirect()->route('to-dos.index');
@@ -43,12 +43,12 @@ class ToDoController extends Controller
         return view('to-dos/edit', compact('to_do'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(StoreUpdateToDo $request, string $id)
     {
         if(!$to_do = ToDo::find($id)) {
             return back();
         }
-        $to_do->update($request->only('name'));
+        $to_do->update($request->validated());
         return redirect()->route('to-dos.show', ['id' => $to_do->id]);
     }
 
