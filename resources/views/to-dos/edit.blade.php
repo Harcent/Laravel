@@ -3,5 +3,5 @@
     @csrf
     @method('PUT')
     <input type="text" name="name" placeholder="{{ $to_do->name }}">
-    <button type="submit">Edit</button>
+    <button type="submit">Save</button>
 </form>
