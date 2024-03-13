@@ -11,10 +11,10 @@ class UpdateToDoDTO
         public string $name,
     ) {}
 
-    public static function makeFromRequest(StoreUpdateToDo $request): self
+    public static function makeFromRequest(StoreUpdateToDo $request, string $id = null): self
     {
         return new self(
-            $request->id,
+            $id ?? $request->id,
             $request->name,
         );
     }

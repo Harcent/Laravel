@@ -31,12 +31,12 @@ class StoreUpdateToDo extends FormRequest
             ],
         ];
 
-        if ($this->method() === 'PUT') {
+        if ($this->method() === 'PUT' || $this->method() === 'PATCH'){
             $rules['name'] = [
                 'required', 
                 'min:3',
                 'max:255',
-                Rule::unique('to_dos')->ignore($this->id),
+                Rule::unique('to_dos')->ignore($this->id ?? $this->to_do),
             ];
         }
 

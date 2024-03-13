@@ -6,6 +6,7 @@ use App\DTO\CreateToDoDTO;
 use App\DTO\UpdateToDoDTO;
 use App\Models\ToDo;
 use App\Repositories\ToDoRepositoryInterface;
+use Illuminate\Database\Eloquent\Collection;
 use stdClass;
 
 class ToDoEloquentORM implements ToDoRepositoryInterface
@@ -14,7 +15,7 @@ class ToDoEloquentORM implements ToDoRepositoryInterface
         protected ToDo $model
     ) {}
 
-    public function getAll(string $filter = null): array
+    public function getAll(string $filter = null): Collection
     {
         return $this->model
              ->where(function ($query) use ($filter) {
@@ -22,8 +23,7 @@ class ToDoEloquentORM implements ToDoRepositoryInterface
                     $query->where('name', $filter);
                 }
              })
-             ->get()
-             ->toArray();
+             ->get();
     }
     
     public function getById(string $id): stdClass|null

@@ -5,6 +5,7 @@ namespace App\Services;
 use App\DTO\CreateToDoDTO;
 use App\DTO\UpdateToDoDTO;
 use App\Repositories\ToDoRepositoryInterface;
+use Illuminate\Database\Eloquent\Collection;
 use stdClass;
 
 class ToDoService
@@ -13,7 +14,7 @@ class ToDoService
         protected ToDoRepositoryInterface $repository
     ) {}
 
-    public function getAll(string $filter = null): array
+    public function getAll(string $filter = null): Collection
     {
         return $this->repository->getAll($filter);
     }
