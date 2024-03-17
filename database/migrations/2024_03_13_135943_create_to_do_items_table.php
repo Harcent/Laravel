@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('to_do_items', function (Blueprint $table) {
             $table->id();
-            $table->to_do_id();
+            $table->unsignedBigInteger('to_do_id');
             $table->string('name');
             $table->text('description');
             $table->enum('status', ['P', 'C']);

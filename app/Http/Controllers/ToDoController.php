@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\DTO\CreateToDoDTO;
-use App\DTO\UpdateToDoDTO;
+use App\DTO\ToDo\CreateToDoDTO;
+use App\DTO\ToDo\UpdateToDoDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateToDo;
 use App\Services\ToDoService;
@@ -60,7 +60,7 @@ class ToDoController extends Controller
             return back();
         }
 
-        return redirect()->route('to-dos.show', ['id' => $to_do->id]);
+        return redirect()->route('items.index', ['id' => $to_do->id]);
     }
 
     public function delete(string $id)

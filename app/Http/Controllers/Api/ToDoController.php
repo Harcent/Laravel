@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\DTO\CreateToDoDTO;
-use App\DTO\UpdateToDoDTO;
+use App\DTO\ToDo\CreateToDoDTO;
+use App\DTO\ToDo\UpdateToDoDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateToDo;
 use App\Http\Resources\ToDoResource;
@@ -36,7 +36,9 @@ class ToDoController extends Controller
             CreateToDoDTO::makeFromRequest($request)
         );
 
-        return new ToDoResource($to_do);
+        return (new ToDoResource($to_do))
+            ->response()
+            ->setStatusCode(Response::HTTP_CREATED);
     }
 
     /**

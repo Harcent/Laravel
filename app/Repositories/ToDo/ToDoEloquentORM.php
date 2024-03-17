@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\ToDo;
 
-use App\DTO\CreateToDoDTO;
-use App\DTO\UpdateToDoDTO;
+use App\DTO\ToDo\CreateToDoDTO;
+use App\DTO\ToDo\UpdateToDoDTO;
 use App\Models\ToDo;
-use App\Repositories\ToDoRepositoryInterface;
+use App\Repositories\ToDo\ToDoRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
 use stdClass;
 

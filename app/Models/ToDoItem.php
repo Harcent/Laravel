@@ -13,6 +13,13 @@ class ToDoItem extends Model
 
     protected $table = 'to_do_items';
 
+    protected $fillable = [
+        'to_do_id',
+        'name',
+        'description',
+        'status',
+    ];
+
     public function status(): Attribute
     {
         return Attribute::make(

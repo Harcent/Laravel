@@ -1,20 +1,18 @@
 <?php
 
-namespace App\DTO;
+namespace App\DTO\ToDo;
 
 use App\Http\Requests\StoreUpdateToDo;
 
-class UpdateToDoDTO
+class CreateToDoDTO
 {
     public function __construct(
-        public string $id,
         public string $name,
     ) {}
 
-    public static function makeFromRequest(StoreUpdateToDo $request, string $id = null): self
+    public static function makeFromRequest(StoreUpdateToDo $request): self
     {
         return new self(
-            $id ?? $request->id,
             $request->name,
         );
     }

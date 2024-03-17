@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\ToDo;
 
-use App\DTO\CreateToDoDTO;
-use App\DTO\UpdateToDoDTO;
+use App\DTO\ToDo\CreateToDoDTO;
+use App\DTO\ToDo\UpdateToDoDTO;
 use Illuminate\Database\Eloquent\Collection;
 use stdClass;
 
