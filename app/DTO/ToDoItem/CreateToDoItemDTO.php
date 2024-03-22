@@ -18,7 +18,7 @@ class CreateToDoItemDTO
     {
         return new self(
             $request->name,
-            $request->description,
+            $request->description ?? '',
             ToDoItemStatus::P,
             $request->to_do_id, 
         );

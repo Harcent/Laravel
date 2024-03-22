@@ -68,11 +68,17 @@ class ToDoItemController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreUpdateToDoItem $request, string $id)
+    public function update(StoreUpdateToDoItem $request)
     {
+        $to_do_item = $this->toDoItemService->getById($request->id, $request->item);
         $to_do_item = $this->toDoItemService->update(
-            UpdateToDoItemDTO::makeFromRequest($request, $id)
-        );
+            UpdateToDoItemDTO::makeFromRequest(
+                $request,
+                oldName:$to_do_item->name,
+                oldDescription:$to_do_item->description,
+                oldStatus:$to_do_item->status,
+                )
+        );                             
 
         return new ToDoItemResource($to_do_item);
     }

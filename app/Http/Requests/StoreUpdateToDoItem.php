@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Enum\ToDoItemStatus;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -37,10 +38,16 @@ class StoreUpdateToDoItem extends FormRequest
 
         if ($this->method() === 'PUT' || $this->method() === 'PATCH'){
             $rules['name'] = [
-                'required', 
                 'min:3',
                 'max:255',
                 Rule::unique('to_do_items')->where('to_do_id', $this->id)->ignore($this->item),
+            ];
+            $cases = array_map(function($status) {
+                return $status->name;
+            }, ToDoItemStatus::cases());
+            
+            $rules['status'] = [
+                Rule::in($cases)
             ];
         }
 

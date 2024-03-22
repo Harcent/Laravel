@@ -15,13 +15,22 @@ class UpdateToDoItemDTO
         public string $to_do_id,
     ) {}
 
-    public static function makeFromRequest(StoreUpdateToDoItem $request): self
+    public static function makeFromRequest(
+        StoreUpdateToDoItem $request,
+        ?string $oldName,
+        ?string $oldDescription,
+        ?string $oldStatus,
+    ): self
     {
+        
+        $status = ToDoItemStatus::fromValue($request->status ?? $oldStatus);
+        $description = $request->description !== null ? $request->description : $oldDescription;
+
         return new self(
             $request->item,
-            $request->name,
-            $request->description,
-            ToDoItemStatus::P,
+            $request->name ?? $oldName,
+            $description,
+            $status,
             $request->id,  
         );
     }
