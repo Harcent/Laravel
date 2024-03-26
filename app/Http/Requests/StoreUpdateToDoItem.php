@@ -38,6 +38,7 @@ class StoreUpdateToDoItem extends FormRequest
 
         if ($this->method() === 'PUT' || $this->method() === 'PATCH'){
             $rules['name'] = [
+                'required',
                 'min:3',
                 'max:255',
                 Rule::unique('to_do_items')->where('to_do_id', $this->id)->ignore($this->item),
